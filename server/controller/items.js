@@ -1,8 +1,8 @@
 const Items = require('../model/Items')
 
 const createItem = async (req,res)=>{
-    const {name} = req.body 
-    const items = await Items.create({name})
+    const {name, price, category} = req.body 
+    const items = await Items.create({name, price, category})
     res.status(201).json({msg: 'Created Successfully' ,items})
 }
 

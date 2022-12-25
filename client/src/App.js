@@ -1,39 +1,54 @@
-import React from 'react'
-import logo from './logo.svg';
+import React, { useCallback } from 'react'
+import Item from './Item/Item'
 import './App.css';
 
+function parseName(name){
+  return name.split(' ').map(word=>word.charAt(0).toUpperCase()+word.slice(1)).join(' ')
+}
+
+function createNewItem(){
+  console.log('athalaam innum panala');
+}
+
 function App() {
+
+  const [testData, setTestData] = React.useState([]);
+
+  const deleteCurrentItem = useCallback((id)=>
+    {
+      console.log(`${id}`)
+      fetch(`/api/v1/items/${id}`, { method: 'DELETE' }).then(res=>{
+        return res.json()
+      }).then(data=>{
+        console.log(data);
+      })
+    }, []
+  );
 
   React.useEffect(()=>{
     fetch('/api/v1/items/').then(res=>{
       return res.json()
     }).then(data=>{
       console.log(data);
-      setTestData(data.items)
+      setTestData(data.items);
     }).catch(err=>{console.log(err);})
-  },[])
-  
-  const [testData, setTestData] = React.useState([]);
+  },[deleteCurrentItem])
+
+
   const allDataFetched = testData.map(item=>{
-    return <p>Name: {item.name}</p>
+    return ( 
+        <Item deleteItem={deleteCurrentItem} parseName={parseName} {...item}/>
+    )
   })
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
+      <div className = "ItemList">
           {!allDataFetched ? 'Loading data...': allDataFetched}
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      </div>
+      <button className='Item--new' onClick={createNewItem}>
+        Create New Item
+      </button>
     </div>
   );
 }
