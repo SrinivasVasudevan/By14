@@ -26,11 +26,12 @@ app.use(notFoundMiddleware)
 app.use(asyncErrorHandlerMiddleware)
 
 
-const portNumber = process.env.PORTNUMBER || 5000
+const portNumber = process.env.PORTNUMBER || 5005
 
 const start = async ()=>{
     try
     {
+        console.log(process.env.connect)
         await connectDB(process.env.connect)
         app.listen(portNumber, ()=>{
             console.log(`Listening to ${portNumber}...`)
