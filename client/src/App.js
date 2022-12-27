@@ -6,10 +6,6 @@ function parseName(name){
   return name.split(' ').map(word=>word.charAt(0).toUpperCase()+word.slice(1)).join(' ')
 }
 
-
-
-
-
 function App() {
 
   const [testData, setTestData] = React.useState([]);
@@ -22,6 +18,7 @@ function App() {
     }).then(data=>{
       console.log(data);
       setTestData(data.items);
+      console.log(data.totalPrice)
     }).catch(err=>{console.log(err);})
   },[]);
 
@@ -92,21 +89,25 @@ function App() {
     )
   })
 
+  const dataSum = testData.map(item=>item.price).reduce((acc, curr)=>acc+curr, 0)
+
   return (
     <div className="App">
       {pageState === 'View' && 
       <>
         <div className = "ItemList">
             {!allDataFetched ? 'Loading data...': allDataFetched}
+
+            {!dataSum? 'Calculating sum...': dataSum}
+            <button className='Item--new' onClick={createButtonClicked}>
+            Create New Item
+          </button>
         </div>
-        <button className='Item--new' onClick={createButtonClicked}>
-          Create New Item
-        </button>
       </>
       }
       {(pageState === 'Create' || pageState === 'Update') && 
       <>
-        <form onSubmit={()=>createItem(pageState)}>
+        <form className='GetItemDetailsForm' onSubmit={()=>createItem(pageState)}>
             <label htmlFor='Name'>Name</label>
             <input type='text' name='name' id='Name' value={itemData.name} onChange={(event)=>formDataChange(event)}/>
             <label htmlFor='Price'>Price</label>
@@ -116,7 +117,6 @@ function App() {
             <button>{pageState === 'Create'?'Add':'Update'}</button>
         </form>
       </>}
-      
     </div>
   );
 }

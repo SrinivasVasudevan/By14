@@ -48,7 +48,12 @@ const getAllItems = async (req,res)=>{
     {
         throw new Error('Collection empty')
     }
-    res.status(200).json({msg: 'Read all items Successfully' ,items, nHits:items.length})
+    const initPrice = 0;
+    const sumPrice = items.map(item=>item.price).reduce(
+    (accumulator, currentValue) => accumulator + currentValue,
+    initPrice
+    );
+    res.status(200).json({msg: 'Read all items Successfully' ,items, nHits:items.length,totalPrice:sumPrice})
 }
 
 const getAllStatic = async (req,res)=>{

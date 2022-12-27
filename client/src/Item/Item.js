@@ -4,14 +4,11 @@ export default function Item(props){
     const {updateItemSetup, deleteItem, parseName, _id, name, price, category} = props;
     console.log(parseName(name), price, category, _id)
     return (
-        <div className='each--item'>
-            <ul>
-                <button className='each--item--delete' onClick={()=>deleteItem(_id)} >Delete</button>
-                <button className='each--item--delete' onClick={()=>updateItemSetup(_id)} >Update</button>
-                <li>{parseName(name)}</li>
-                <li><span className=''><span className='each--item--price--label'>Price: </span>{price}</span></li>
-                <li><span className=''><span className='each--item--category--label'>Category: </span>{category}</span></li>
-            </ul>
+        <div className='each--item' onClick={()=>updateItemSetup(_id)}>      
+            <span className='each--item--category'><span className='each--item--category--label'>{category}</span></span>
+            <span className='each--item--name'><span className='each--item--name--label'>{parseName(name)}</span></span>
+            <span className='each--item--price'><span className='each--item--price--label'>{price}</span></span>
+            <button className='each--item--delete' onClick={(event)=>{event.preventDefault(); deleteItem(_id)}} >Delete</button>
         </div>
     )
 }
