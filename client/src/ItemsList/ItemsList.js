@@ -6,26 +6,18 @@ function parseName(name){
   return name.split(' ').map(word=>word.charAt(0).toUpperCase()+word.slice(1)).join(' ')
 }
 
-function ItemsList() {
+function ItemsList(props) {
 
 
-  
+  const {testData, fetchData} = props;
 
-  const [testData, setTestData] = React.useState([]);
+  //const [testData, setTestData] = React.useState([]);
   const [itemData, setItemData] = React.useState({'name':'','price':'','category':'','_id':''});
   const [pageState, setPageState] = React.useState('View'); // tracks create state very bad naming :(
 
   
 
-  const fetchData = useCallback(()=>{
-    fetch('/api/v1/items/').then(res=>{
-      return res.json()
-    }).then(data=>{
-      console.log(data);
-      setTestData(data.items);
-      console.log(data.totalPrice)
-    }).catch(err=>{console.log(err);})
-  },[]);
+  
 
   function createButtonClicked(event){
     setPageState('Create')
@@ -86,9 +78,6 @@ function ItemsList() {
     console.log(itemData)
   }
 
-  React.useEffect(()=>{
-    fetchData()
-  },[fetchData, deleteCurrentItem])
 
 
   const allDataFetched = testData.map(item=>{
@@ -114,7 +103,7 @@ function ItemsList() {
       {pageState === 'View' && 
       <>
         <div className = "ItemList">
-            {!allDataFetched ? 'Loading data...': allDataFetched}
+            <div className='transactionListData'>{!allDataFetched ? 'Loading data...': allDataFetched}</div>
             {!dataSum? 'Calculating sum...': <span className='TotalPriceSection'><span className='TotalPrice'><p>{dataSum}</p></span></span>}
         </div>
       </>
