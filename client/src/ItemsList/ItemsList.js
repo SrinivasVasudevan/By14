@@ -1,16 +1,21 @@
 import React, { useCallback } from 'react'
 import Item from './Item/Item'
-import './App.css';
+import './ItemsList.css';
 
 function parseName(name){
   return name.split(' ').map(word=>word.charAt(0).toUpperCase()+word.slice(1)).join(' ')
 }
 
-function App() {
+function ItemsList() {
+
+
+  
 
   const [testData, setTestData] = React.useState([]);
   const [itemData, setItemData] = React.useState({'name':'','price':'','category':'','_id':''});
   const [pageState, setPageState] = React.useState('View'); // tracks create state very bad naming :(
+
+  
 
   const fetchData = useCallback(()=>{
     fetch('/api/v1/items/').then(res=>{
@@ -22,8 +27,11 @@ function App() {
     }).catch(err=>{console.log(err);})
   },[]);
 
-  function createButtonClicked(){
+  function createButtonClicked(event){
     setPageState('Create')
+  }
+  function viewButtonClicked(event){
+    setPageState('View')
   }
 
   const deleteCurrentItem = useCallback((id)=>
@@ -91,17 +99,23 @@ function App() {
 
   const dataSum = testData.map(item=>item.price).reduce((acc, curr)=>acc+curr, 0)
 
+
+
   return (
-    <div className="App">
+    <div className="ItemListSection">
+      <div className='TransactionHeader'>
+          <div className={`Item--view${pageState=='View'? ' HeaderClicked':''}`} onClick={viewButtonClicked}>
+              Transactions made
+          </div>
+          <div className={`Item--new${pageState=='Create'?' HeaderClicked':''}`} onClick={createButtonClicked}>
+              New Transactions
+          </div>
+        </div>
       {pageState === 'View' && 
       <>
         <div className = "ItemList">
             {!allDataFetched ? 'Loading data...': allDataFetched}
-
-            {!dataSum? 'Calculating sum...': dataSum}
-            <button className='Item--new' onClick={createButtonClicked}>
-            Create New Item
-          </button>
+            {!dataSum? 'Calculating sum...': <span className='TotalPriceSection'><span className='TotalPrice'><p>{dataSum}</p></span></span>}
         </div>
       </>
       }
@@ -121,4 +135,4 @@ function App() {
   );
 }
 
-export default App;
+export default ItemsList;
