@@ -5,9 +5,21 @@ const TransactionSchema = mongoose.Schema({
         type:String,
         required: [true, 'please fill the name section']
     },
-    price: {
+    amount: {
         type:Number,
-        required: [true, 'please fill the price section']
+        required: [true, 'please fill the amount section']
+    },
+    transactionDate: {
+        type:Date,
+        default: new Date().toLocaleString()
+    },
+    timeStamp: {
+        type:Date,
+        default: new Date().toLocaleString()
+    },
+    category: {
+        type:String,
+        default: 'Miscellaneous'
     }
 
 })

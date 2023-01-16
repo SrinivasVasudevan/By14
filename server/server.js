@@ -19,7 +19,7 @@ app.use(express.json())
 
 //routing to given paths
 app.use('/api/v1/transaction/',routes)
-app.use('api/v1/static/', getAllTransactionsStatic)
+app.use('/api/v1/static/', getAllTransactionsStatic)
 
 app.use(notFoundMiddleware)
 app.use(asyncErrorMiddleware)
