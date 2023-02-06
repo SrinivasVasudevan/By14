@@ -1,5 +1,6 @@
 import { useCallback, useState, useEffect } from 'react'
 import './Transactions.css';
+import TransactionCard from './modules/TransactionCard'
 
 function Transactions() {
 
@@ -21,13 +22,13 @@ function Transactions() {
 
 
   //react variables that uses states
-  const transactionCard = transactions.map((transaction)=>{
-    return <p>{transaction.name} {transaction.amount} {new Date(transaction.transactionDate).toDateString()} {transaction.category}</p>
-  }) 
+  const transactionCard = transactions.map((transaction)=>{ return <TransactionCard {...transaction}/>}) 
 
   return (
     <div className="Transactions">
-      {transactionCard}
+      <div className='TransactionCardContainer'>
+        {transactionCard}      
+      </div>
     </div>
   );
 }

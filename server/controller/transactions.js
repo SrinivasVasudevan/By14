@@ -42,7 +42,7 @@ const getAllTransactionsStatic = async (req,res)=>{
 
 const getAllTransactions = async (req,res)=>{
     console.log(req.query)
-    const {category, sort, numericFilters} = req.query
+    const {category, sort, numericFilters, page, limit} = req.query
     let queryObject = {}
     if(category)
     {
@@ -93,6 +93,13 @@ const getAllTransactions = async (req,res)=>{
     }
     else{
         result = result.sort('createAt')
+    }
+    if(page && limit)
+    {
+        result = result.limit(limit).skip((page-1)*limit)
+    }
+    else{
+        result = result.limit(limit)
     }
     const transactions = await result;
 

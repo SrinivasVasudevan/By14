@@ -13,7 +13,7 @@ const {getAllTransactionsStatic} = require('./controller/transactions')
 const asyncErrorMiddleware = require('./middleware/async-errors-middleware')
 const notFoundMiddleware = require('./middleware/not-found-middleware')
 
-const portNumber = process.env.PORTNUMBER || 5000
+const portNumber = process.env.PORTNUMBER || 5005
 
 app.use(express.json())
 
