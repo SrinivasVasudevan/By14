@@ -1,0 +1,32 @@
+.TransactionCard-tags{
+    display: flex;
+    gap: 1rem;
+    padding-left: 1rem;
+}
+
+.TransactionCard-tags-category{
+    padding: 0.2rem;
+    border-radius: 0.4rem;
+    border: 1px solid hsl(176, 100%, 40%);
+    background-color:hsl(176, 91%, 33%);
+    min-width: 1rem;
+    color: black;
+    padding: 0.3rem 0.4rem;
+}
+
+.TransactionCard-tags-datetime{
+    padding: 0.2rem;
+    border-radius: 0.4rem;
+    border: 1px solid hsl(50, 100%, 40%);
+    background-color:hsl(50, 100%, 33%);
+    color: black;
+}
+
+.TransactionCard-name-label{
+    letter-spacing: 0.07rem;
+}
+
+.TransactionCard-amount-label{
+    padding-right: 0.5rem;
+    font-weight: 700;
+}

@@ -1,0 +1,10 @@
+.NewTransaction{
+    flex-grow: 1;
+     
+}
+
+.NewTransaction-form{
+    display: flex;
+    flex-direction: column;
+    
+}
