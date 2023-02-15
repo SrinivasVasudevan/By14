@@ -1,4 +1,4 @@
-.NewTransaction{
+  .NewTransaction{
     flex-grow: 1;
      
 }
@@ -6,5 +6,168 @@
 .NewTransaction-form{
     display: flex;
     flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    gap: 2rem;
+}
+
+
+
+.NewTransaction-form-container{
+    display: flex;
+    color: wheat;
+    justify-content: space-between;
+    
+    gap: 0.5rem;
+    flex-direction: column;
+}
+
+
+#NewTransaction-amount{
+    padding: 0.8rem 0.1rem;
+    background-color: #393e48;
+    font-size: large;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 1px solid wheat;
+}
+    
+
+
+#NewTransaction-name{
+    padding: 1rem 1.2rem;
+    font-size: larger;
+    font-weight: 600;
+    text-align: center;
+}
+
+#NewTransaction-transactionDate{
+    padding: 0.8rem 0.5rem;
+    font-size: large;
+    font-weight: 400;
+    text-align: center;
+}
+
+
+input{
+    background-color: #262c39;
+    border-radius: 2px;
+    border: none;
+    color: white;
     
 }
+
+input#NewTransaction-amount::placeholder{
+    color: white;
+}  
+
+.NewTransaction-amount-container {
+    position: relative;
+}
+.NewTransaction-amount-container input {
+    padding-left:18px;
+}
+.NewTransaction-amount-container:before {
+    position: absolute;
+    top: 0;
+    content:"₹";
+    left: 5px;
+    color: wheat;
+
+}
+
+input:focus{
+    border: 1px solid wheat;
+}
+
+label{
+    font-weight: bold;
+    letter-spacing: 0.08rem;
+    color: wheat;
+}
+
+.NewTransaction-form-categories{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    border: 1px solid wheat;
+    padding: 1.5rem 2.5rem;
+    flex-direction: column;
+}
+
+.NewTransaction-form-categories-container
+{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.NewTransaction-category-container{
+    border: 1px solid rgba(234, 229, 219, 0.7);
+    border-radius: 0.5rem;
+    padding: 0.2rem 0.7rem;
+    font-weight: 500;
+    font-size: x-small;
+    background-color: #262c39;
+    display: flex;
+    gap: 0.2rem;
+    align-items: center;
+    justify-content: space-around;
+    cursor: pointer;
+
+}
+
+.NewTransaction-category-container-thumbnail{
+    background-color: #393e48;
+    border-radius: 50%;
+    padding: 5px;
+}
+
+.NewTransaction-submit{
+    padding: 0.5rem 0.7rem;
+    background-color: rgb(70, 213, 165);
+    border-radius: 1px;
+    border: none;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    font-size: medium;
+    letter-spacing: 0.09rem;
+    
+  }
+
+  .NewTransaction-form-categories-container .active{
+    border: 1px solid wheat;
+    background-color: #22252b;
+  }
+
+/* label{
+    display: inline-block;
+    padding: 1rem;
+    border-left: 1px solid wheat;
+    border-top: 1px solid wheat;
+    border-bottom: 1px solid wheat;
+
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px; 
+
+    background-color:  #282c34;
+}
+
+input{
+    background-color:  #282c34;
+    border: 1px solid wheat;
+
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px; 
+
+    padding: 1rem;
+    color: wheat;
+    display: inline-block;
+}
+
+input[hidden]{
+    display: none;
+} */

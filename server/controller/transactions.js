@@ -111,7 +111,9 @@ const getAllTransactions = async (req,res)=>{
 const createTransaction = async (req,res)=>{
     let {name, amount, transactionDate, category} = req.body
     if(!transactionDate) transactionDate = new Date().toLocaleString();
-    let timeStamp = new Date().toLocaleString();
+    else transactionDate = new Date(transactionDate)
+    let timeStamp = new Date();
+    console.log(transactionDate, timeStamp)
     const result = await Transaction.create({name,amount,transactionDate, category, timeStamp})
     if(!result) throw new CustomErrorApi('some error occured please try again later..',500)
     res.status(201).send({message:'successfully created',transaction:result})
@@ -138,7 +140,13 @@ const deleteTransaction = async (req,res)=>{
     if(!result) throw new CustomErrorApi('the id used does not exist..',400)
     res.status(200).send({message:'successfully deleted',transaction:result})
 }
-
+//getMetaData very ineffecient
+const getMetaData = async (req,res)=>{
+    const result = await Transaction.find({});
+    if(!result || !result.length) throw new CustomErrorApi("Database Empty",404)
+    res.status(200).send({message:'successfully queried all data',nHits:result.length})
+    
+}
 
 module.exports = {
     signup,
@@ -148,5 +156,6 @@ module.exports = {
     getOneTransaction,
     createTransaction,
     updateTransaction,
-    deleteTransaction
+    deleteTransaction,
+    getMetaData
 }
