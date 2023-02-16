@@ -3,7 +3,9 @@ require('express-async-errors')
 require('dotenv').config()
 
 const express= require('express')
+const path = require('path');
 const app = express()
+
 
 const connectDB = require('./connect/connect')
 const routes = require('./router/routes')
@@ -18,6 +20,7 @@ const portNumber = process.env.PORTNUMBER || 5005
 app.use(express.json())
 
 //routing to given paths
+app.use(express.static(path.resolve(__dirname, '../client/build')));
 app.use('/api/v1/transaction/',routes)
 app.use('/api/v1/static/', getAllTransactionsStatic)
 
