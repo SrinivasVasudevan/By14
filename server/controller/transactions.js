@@ -144,7 +144,12 @@ const deleteTransaction = async (req,res)=>{
 const getMetaData = async (req,res)=>{
     const result = await Transaction.find({});
     if(!result || !result.length) throw new CustomErrorApi("Database Empty",404)
-    res.status(200).send({message:'successfully queried all data',nHits:result.length})
+    let sum = 0;
+    result.forEach(res=>{
+        sum+=res.amount
+    })
+    console.log(sum)
+    res.status(200).send({message:'successfully queried all data',nHits:result.length,totalSpent:sum})
     
 }
 

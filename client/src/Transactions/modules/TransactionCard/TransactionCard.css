@@ -26,7 +26,31 @@
     letter-spacing: 0.07rem;
 }
 
+.TransactionCard-amount{
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+}
+
 .TransactionCard-amount-label{
     padding-right: 0.5rem;
     font-weight: 700;
+    align-self: flex-start;
+    
 }
+
+.TransactionCard-amount-delete{
+    align-self: flex-end;
+    margin-right: 0.5rem;
+    padding: 0.5rem;   
+    /* border: 1px solid blue; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    width: 1rem;
+    height: 1rem;
+    background-color: rgb(177, 76, 76);
+}
+
+

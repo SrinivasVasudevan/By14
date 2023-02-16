@@ -2,6 +2,7 @@ import { useCallback, useState, useEffect } from 'react'
 import './Transactions.css';
 import TransactionCard from './modules/TransactionCard/TransactionCard'
 import NewTransaction from './modules/NewTransaction/NewTransaction'
+import axios from 'axios'
 
 function Transactions() {
 
@@ -11,8 +12,9 @@ function Transactions() {
   const [selectedTransaction, setSelectedTransaction] = useState({});
   const [currentPageNumber, setCurrentPageNumber] = useState(1);
   // const [currentPageSet, setCurrentPageSet] = useState(1);
+  //const [refetchData, setRefetchData] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
-  // const [metaData, setMetaData] = useState(1);
+  const [metaData, setMetaData] = useState(1);
   const limit = 4;
 
   const fetchData = useCallback(()=>{
@@ -23,7 +25,7 @@ function Transactions() {
         fetch(`/api/v1/transaction/metaData`).then(result=>result.json()).then(data=>{
           if(data.nHits)
           {
-            // setMetaData(data.nHits)
+            setMetaData(data)
             setTotalPages(Math.ceil(data.nHits*1.0/limit))
           }
         })
@@ -38,12 +40,18 @@ function Transactions() {
   },[fetchData])
 
 
-  
+  function handleDelete(e, props)
+  {
+      e.preventDefault()
+      e.stopPropagation()
+      console.log(props._id)
+      axios.delete(`/api/v1/transaction/${props._id}`).then(response=>{console.log(response);fetchData();}).catch(err=>console.log(err))
+
+  }
 
   //react variables that uses states
-  const transactionCard = transactions.map((transaction)=>{ return <TransactionCard {...transaction} setSelectedTransaction={setSelectedTransaction} setPageState={setPageState}/>});
-  let totalTransactionAmount = 0;
-  transactions.forEach((transaction)=>{totalTransactionAmount += transaction.amount;})
+  const transactionCard = transactions.map((transaction)=>{ return <TransactionCard {...transaction} setSelectedTransaction={setSelectedTransaction} setPageState={setPageState} handleDelete={handleDelete}/>});
+  
 
   const paginatorButtons = [];
   
@@ -82,14 +90,16 @@ function Transactions() {
   }
 
   function addExpenseSwitch(){
-    setPageState(prevState=>!prevState);
+    setPageState(prevState=>prevState?0:1);
   }
+
+  
 
   return (
     <div className="Transactions">
       <div className='Transactions-options'>
         <div className='Transactions-options-totalspent'>
-          <span className='Transactions-options-totalspent-label'>Total Amount Spent : </span><span className='Transactions-options-totalspent-amount'>₹{totalTransactionAmount}</span> 
+          <span className='Transactions-options-totalspent-label'>Total Amount Spent : </span><span className='Transactions-options-totalspent-amount'>₹{metaData.totalSpent}</span> 
         </div>
         <button className='Transactions-options-addExpense' onClick={addExpenseSwitch}>{pageState ? 'All Transactions':'Add Expense +'}</button>
       </div>

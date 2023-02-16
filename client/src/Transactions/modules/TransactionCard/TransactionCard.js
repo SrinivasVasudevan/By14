@@ -25,6 +25,8 @@ export default function TransactionCard(props){
         props.setPageState(2);
     }
 
+    
+
     return (
         <div className='TransactionCard' onClick={()=>{handleTransactionCardClick(props)}}>
             <div className='TransactionCard-thumbnail-container'>
@@ -33,15 +35,15 @@ export default function TransactionCard(props){
                 </div>
             </div>
             <div className='TransactionCard-tags'>
-                <span className='TransactionCard-tags-category'>{parseCategory(props.category)}</span><span className='TransactionCard-tags-datetime'>🗓️ {new Date(props.transactionDate).toDateString()}</span>    
+                <span className='TransactionCard-tags-category'>{parseCategory(props.category)}</span><span className='TransactionCard-tags-datetime'>🗓️ {new Date(props.transactionDate).toDateString().split(' ').slice(1).join(' ')}</span>    
             </div>
             <div className='TransactionCard-name'>
                 <span className='TransactionCard-name-label'>{props.name}</span>
                 
             </div>
             <div className='TransactionCard-amount'>
+                <span className='TransactionCard-amount-delete' onClick={(e)=>{props.handleDelete(e, props)}}>🗑️</span>
                 <span className='TransactionCard-amount-label'>₹{props.amount}</span>
-                
             </div>
         </div>
     )

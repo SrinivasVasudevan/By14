@@ -10,7 +10,7 @@ export default function NewTransaction(props){
 
     
 
-    const [formData, setFormData] = React.useState({...props, 'transactionDate':props.transactionDate.slice(0,-1)});
+    const [formData, setFormData] = React.useState({...props, 'transactionDate':props?.transactionDate?.slice(0,-1)});
 
     // React.useEffect(()=>{
     //     if(props.pageState === 2)

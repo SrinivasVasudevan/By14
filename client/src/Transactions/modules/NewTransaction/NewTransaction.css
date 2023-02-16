@@ -139,8 +139,9 @@ label{
   }
 
   .NewTransaction-form-categories-container .active{
-    border: 1px solid wheat;
-    background-color: #22252b;
+    border: 1px solid #262c39;
+    background-color: wheat;
+    color: #262c39;
   }
 
 /* label{
