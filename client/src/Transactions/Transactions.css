@@ -1,0 +1,159 @@
+.Transactions {
+  text-align: center;
+  background-color: #282c34;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: white;
+  /* border: 1px solid blue; */
+  flex-grow: 1;
+  padding: 1rem;
+}
+
+
+.Transactions-options{
+  display: flex;
+  padding: 1rem 0rem;
+  /* border: 1px solid blue; */
+  justify-content: space-between;
+  align-items: center
+}
+
+.Transactions-options-addExpense{
+  padding: 0.5rem 0.7rem;
+  background-color: rgb(70, 213, 165);
+  /* border: 1px solid blue; */
+  border-radius: 1px;
+  border: none;
+  cursor: pointer;
+  color: white;
+  font-weight: 800;
+  letter-spacing: 0.06rem;
+  font-size: small;
+}
+
+.Transactions-options-totalspent{
+  font-size: 1rem ;
+  font-weight: 700;
+}
+
+.Transactions-options-totalspent-amount{
+  color: hsl(0, 99%, 39%);
+  font-size: 1.5rem;
+  
+}
+
+
+.TransactionCardContainer{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex-grow: 1;
+}
+
+.TransactionCard{
+  display: grid;
+  /* border: 1px solid black; */
+  background-color: #393e48;
+  border-radius: 5px;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 3rem 4fr 2fr;
+  padding: 0.5rem;
+}
+
+.TransactionCard-thumbnail{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  /* border: 1px solid white; */
+  height: 3rem;
+  width: 3rem;
+  background-color: #262c39;
+}
+.TransactionCard-thumbnail-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-row: 1/ 3;
+}
+
+.TransactionCard-tags{
+  grid-row: 1/ 2;
+  padding: 0.5rem 2rem;
+  text-align: left;
+  font-size: xx-small;
+}
+
+.TransactionCard-name{
+  grid-row: 2/ 3;
+  padding: 0.5rem 1rem;
+  text-align: left;
+}
+
+.TransactionCard-amount{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  grid-column: 3/ 4;
+  grid-row: 1/ 3;
+  
+}
+
+.Transactions-paginator
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.Transactions-paginator-pages{
+  display: inline-block;
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.Transactions-paginator-pages > li{
+  display: inline-block;
+  background-color: rgb(104, 32, 172);  
+  padding: 0.5rem;
+  border-radius: 50%;
+  height: 0.5rem;
+  width: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  cursor: pointer;
+  color: white;
+  font-size: small;
+}
+
+.Transactions-paginator > button {
+  border: none;
+  padding: 0.7rem;
+  border-radius: 50%;
+  height: 0.5rem;
+  width: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  cursor: pointer;
+  font-size: x-small;
+}
+
+.NewTransaction{
+  background-color: #393e48;
+  border-radius: 5px;
+}
+
+
+
